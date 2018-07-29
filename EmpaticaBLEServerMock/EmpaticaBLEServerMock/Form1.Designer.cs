@@ -32,40 +32,40 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.closeButton = new System.Windows.Forms.Button();
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
-            this.trackBar2 = new System.Windows.Forms.TrackBar();
-            this.trackBar3 = new System.Windows.Forms.TrackBar();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.trackBar4 = new System.Windows.Forms.TrackBar();
-            this.trackBar5 = new System.Windows.Forms.TrackBar();
-            this.trackBar6 = new System.Windows.Forms.TrackBar();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.trackBar7 = new System.Windows.Forms.TrackBar();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.trackBar8 = new System.Windows.Forms.TrackBar();
+            this.accTrackBar = new System.Windows.Forms.TrackBar();
+            this.bvpTrackBar = new System.Windows.Forms.TrackBar();
+            this.gsrTrackBar = new System.Windows.Forms.TrackBar();
+            this.gsrLabel = new System.Windows.Forms.Label();
+            this.bvpLabel = new System.Windows.Forms.Label();
+            this.accLabel = new System.Windows.Forms.Label();
+            this.accTextBox = new System.Windows.Forms.TextBox();
+            this.bvpTextBox = new System.Windows.Forms.TextBox();
+            this.gsrTextBox = new System.Windows.Forms.TextBox();
+            this.batTextBox = new System.Windows.Forms.TextBox();
+            this.hrTtextBox = new System.Windows.Forms.TextBox();
+            this.ibiTextBox = new System.Windows.Forms.TextBox();
+            this.ibiLabel = new System.Windows.Forms.Label();
+            this.hrLabel = new System.Windows.Forms.Label();
+            this.batLabel = new System.Windows.Forms.Label();
+            this.batTrackBar = new System.Windows.Forms.TrackBar();
+            this.hrTrackBar = new System.Windows.Forms.TrackBar();
+            this.ibiTrackBar = new System.Windows.Forms.TrackBar();
+            this.tmpTextBox = new System.Windows.Forms.TextBox();
+            this.tmpLabel = new System.Windows.Forms.Label();
+            this.tmpTrackBar = new System.Windows.Forms.TrackBar();
+            this.tagTextBox = new System.Windows.Forms.TextBox();
+            this.tagLabel = new System.Windows.Forms.Label();
+            this.tagTrackBar = new System.Windows.Forms.TrackBar();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.accTrackBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bvpTrackBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gsrTrackBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.batTrackBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.hrTrackBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ibiTrackBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tmpTrackBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tagTrackBar)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -79,30 +79,30 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.textBox8);
-            this.panel2.Controls.Add(this.label8);
-            this.panel2.Controls.Add(this.trackBar8);
-            this.panel2.Controls.Add(this.textBox7);
-            this.panel2.Controls.Add(this.label7);
-            this.panel2.Controls.Add(this.trackBar7);
-            this.panel2.Controls.Add(this.textBox4);
-            this.panel2.Controls.Add(this.textBox5);
-            this.panel2.Controls.Add(this.textBox6);
-            this.panel2.Controls.Add(this.label4);
-            this.panel2.Controls.Add(this.label5);
-            this.panel2.Controls.Add(this.label6);
-            this.panel2.Controls.Add(this.trackBar4);
-            this.panel2.Controls.Add(this.trackBar5);
-            this.panel2.Controls.Add(this.trackBar6);
-            this.panel2.Controls.Add(this.textBox3);
-            this.panel2.Controls.Add(this.textBox2);
-            this.panel2.Controls.Add(this.textBox1);
-            this.panel2.Controls.Add(this.label3);
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Controls.Add(this.trackBar3);
-            this.panel2.Controls.Add(this.trackBar2);
-            this.panel2.Controls.Add(this.trackBar1);
+            this.panel2.Controls.Add(this.tagTextBox);
+            this.panel2.Controls.Add(this.tagLabel);
+            this.panel2.Controls.Add(this.tagTrackBar);
+            this.panel2.Controls.Add(this.tmpTextBox);
+            this.panel2.Controls.Add(this.tmpLabel);
+            this.panel2.Controls.Add(this.tmpTrackBar);
+            this.panel2.Controls.Add(this.batTextBox);
+            this.panel2.Controls.Add(this.hrTtextBox);
+            this.panel2.Controls.Add(this.ibiTextBox);
+            this.panel2.Controls.Add(this.ibiLabel);
+            this.panel2.Controls.Add(this.hrLabel);
+            this.panel2.Controls.Add(this.batLabel);
+            this.panel2.Controls.Add(this.batTrackBar);
+            this.panel2.Controls.Add(this.hrTrackBar);
+            this.panel2.Controls.Add(this.ibiTrackBar);
+            this.panel2.Controls.Add(this.gsrTextBox);
+            this.panel2.Controls.Add(this.bvpTextBox);
+            this.panel2.Controls.Add(this.accTextBox);
+            this.panel2.Controls.Add(this.accLabel);
+            this.panel2.Controls.Add(this.bvpLabel);
+            this.panel2.Controls.Add(this.gsrLabel);
+            this.panel2.Controls.Add(this.gsrTrackBar);
+            this.panel2.Controls.Add(this.bvpTrackBar);
+            this.panel2.Controls.Add(this.accTrackBar);
             this.panel2.Location = new System.Drawing.Point(24, 159);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(906, 222);
@@ -127,206 +127,206 @@
             this.closeButton.UseVisualStyleBackColor = true;
             this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
             // 
-            // trackBar1
+            // accTrackBar
             // 
-            this.trackBar1.Location = new System.Drawing.Point(146, 22);
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(246, 45);
-            this.trackBar1.TabIndex = 0;
+            this.accTrackBar.Location = new System.Drawing.Point(146, 22);
+            this.accTrackBar.Name = "accTrackBar";
+            this.accTrackBar.Size = new System.Drawing.Size(246, 45);
+            this.accTrackBar.TabIndex = 1;
             // 
-            // trackBar2
+            // bvpTrackBar
             // 
-            this.trackBar2.Location = new System.Drawing.Point(146, 74);
-            this.trackBar2.Name = "trackBar2";
-            this.trackBar2.Size = new System.Drawing.Size(246, 45);
-            this.trackBar2.TabIndex = 1;
+            this.bvpTrackBar.Location = new System.Drawing.Point(146, 74);
+            this.bvpTrackBar.Name = "bvpTrackBar";
+            this.bvpTrackBar.Size = new System.Drawing.Size(246, 45);
+            this.bvpTrackBar.TabIndex = 2;
             // 
-            // trackBar3
+            // gsrTrackBar
             // 
-            this.trackBar3.Location = new System.Drawing.Point(146, 126);
-            this.trackBar3.Name = "trackBar3";
-            this.trackBar3.Size = new System.Drawing.Size(246, 45);
-            this.trackBar3.TabIndex = 2;
+            this.gsrTrackBar.Location = new System.Drawing.Point(146, 126);
+            this.gsrTrackBar.Name = "gsrTrackBar";
+            this.gsrTrackBar.Size = new System.Drawing.Size(246, 45);
+            this.gsrTrackBar.TabIndex = 3;
             // 
-            // label1
+            // gsrLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 130);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(124, 13);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "Galvanic Skin Response";
+            this.gsrLabel.AutoSize = true;
+            this.gsrLabel.Location = new System.Drawing.Point(16, 130);
+            this.gsrLabel.Name = "gsrLabel";
+            this.gsrLabel.Size = new System.Drawing.Size(124, 13);
+            this.gsrLabel.TabIndex = 8;
+            this.gsrLabel.Text = "Galvanic Skin Response";
             // 
-            // label2
+            // bvpLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(39, 80);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(101, 13);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "Blood Volume Pulse";
+            this.bvpLabel.AutoSize = true;
+            this.bvpLabel.Location = new System.Drawing.Point(39, 80);
+            this.bvpLabel.Name = "bvpLabel";
+            this.bvpLabel.Size = new System.Drawing.Size(101, 13);
+            this.bvpLabel.TabIndex = 9;
+            this.bvpLabel.Text = "Blood Volume Pulse";
             // 
-            // label3
+            // accLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(45, 24);
-            this.label3.Name = "label3";
-            this.label3.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label3.Size = new System.Drawing.Size(95, 13);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "3-axis acceleration";
+            this.accLabel.AutoSize = true;
+            this.accLabel.Location = new System.Drawing.Point(45, 24);
+            this.accLabel.Name = "accLabel";
+            this.accLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.accLabel.Size = new System.Drawing.Size(95, 13);
+            this.accLabel.TabIndex = 10;
+            this.accLabel.Text = "3-axis acceleration";
             // 
-            // textBox1
+            // accTextBox
             // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(398, 21);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(36, 20);
-            this.textBox1.TabIndex = 14;
+            this.accTextBox.Enabled = false;
+            this.accTextBox.Location = new System.Drawing.Point(398, 21);
+            this.accTextBox.Name = "accTextBox";
+            this.accTextBox.ReadOnly = true;
+            this.accTextBox.Size = new System.Drawing.Size(36, 20);
+            this.accTextBox.TabIndex = 14;
             // 
-            // textBox2
+            // bvpTextBox
             // 
-            this.textBox2.Enabled = false;
-            this.textBox2.Location = new System.Drawing.Point(398, 73);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(36, 20);
-            this.textBox2.TabIndex = 15;
+            this.bvpTextBox.Enabled = false;
+            this.bvpTextBox.Location = new System.Drawing.Point(398, 73);
+            this.bvpTextBox.Name = "bvpTextBox";
+            this.bvpTextBox.ReadOnly = true;
+            this.bvpTextBox.Size = new System.Drawing.Size(36, 20);
+            this.bvpTextBox.TabIndex = 15;
             // 
-            // textBox3
+            // gsrTextBox
             // 
-            this.textBox3.Enabled = false;
-            this.textBox3.Location = new System.Drawing.Point(398, 125);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(36, 20);
-            this.textBox3.TabIndex = 16;
+            this.gsrTextBox.Enabled = false;
+            this.gsrTextBox.Location = new System.Drawing.Point(398, 125);
+            this.gsrTextBox.Name = "gsrTextBox";
+            this.gsrTextBox.ReadOnly = true;
+            this.gsrTextBox.Size = new System.Drawing.Size(36, 20);
+            this.gsrTextBox.TabIndex = 16;
             // 
-            // textBox4
+            // batTextBox
             // 
-            this.textBox4.Enabled = false;
-            this.textBox4.Location = new System.Drawing.Point(836, 125);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(36, 20);
-            this.textBox4.TabIndex = 25;
+            this.batTextBox.Enabled = false;
+            this.batTextBox.Location = new System.Drawing.Point(836, 125);
+            this.batTextBox.Name = "batTextBox";
+            this.batTextBox.ReadOnly = true;
+            this.batTextBox.Size = new System.Drawing.Size(36, 20);
+            this.batTextBox.TabIndex = 25;
             // 
-            // textBox5
+            // hrTtextBox
             // 
-            this.textBox5.Enabled = false;
-            this.textBox5.Location = new System.Drawing.Point(836, 73);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(36, 20);
-            this.textBox5.TabIndex = 24;
+            this.hrTtextBox.Enabled = false;
+            this.hrTtextBox.Location = new System.Drawing.Point(836, 73);
+            this.hrTtextBox.Name = "hrTtextBox";
+            this.hrTtextBox.ReadOnly = true;
+            this.hrTtextBox.Size = new System.Drawing.Size(36, 20);
+            this.hrTtextBox.TabIndex = 24;
             // 
-            // textBox6
+            // ibiTextBox
             // 
-            this.textBox6.Enabled = false;
-            this.textBox6.Location = new System.Drawing.Point(836, 21);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.ReadOnly = true;
-            this.textBox6.Size = new System.Drawing.Size(36, 20);
-            this.textBox6.TabIndex = 23;
+            this.ibiTextBox.Enabled = false;
+            this.ibiTextBox.Location = new System.Drawing.Point(836, 21);
+            this.ibiTextBox.Name = "ibiTextBox";
+            this.ibiTextBox.ReadOnly = true;
+            this.ibiTextBox.Size = new System.Drawing.Size(36, 20);
+            this.ibiTextBox.TabIndex = 23;
             // 
-            // label4
+            // ibiLabel
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(491, 27);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(87, 13);
-            this.label4.TabIndex = 22;
-            this.label4.Text = "Interbeat Interval";
+            this.ibiLabel.AutoSize = true;
+            this.ibiLabel.Location = new System.Drawing.Point(491, 27);
+            this.ibiLabel.Name = "ibiLabel";
+            this.ibiLabel.Size = new System.Drawing.Size(87, 13);
+            this.ibiLabel.TabIndex = 22;
+            this.ibiLabel.Text = "Interbeat Interval";
             // 
-            // label5
+            // hrLabel
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(524, 80);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(54, 13);
-            this.label5.TabIndex = 21;
-            this.label5.Text = "Heartbeat";
+            this.hrLabel.AutoSize = true;
+            this.hrLabel.Location = new System.Drawing.Point(524, 80);
+            this.hrLabel.Name = "hrLabel";
+            this.hrLabel.Size = new System.Drawing.Size(54, 13);
+            this.hrLabel.TabIndex = 21;
+            this.hrLabel.Text = "Heartbeat";
             // 
-            // label6
+            // batLabel
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(501, 130);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(77, 13);
-            this.label6.TabIndex = 20;
-            this.label6.Text = "Device Battery";
+            this.batLabel.AutoSize = true;
+            this.batLabel.Location = new System.Drawing.Point(501, 130);
+            this.batLabel.Name = "batLabel";
+            this.batLabel.Size = new System.Drawing.Size(77, 13);
+            this.batLabel.TabIndex = 20;
+            this.batLabel.Text = "Device Battery";
             // 
-            // trackBar4
+            // batTrackBar
             // 
-            this.trackBar4.Location = new System.Drawing.Point(583, 125);
-            this.trackBar4.Name = "trackBar4";
-            this.trackBar4.Size = new System.Drawing.Size(246, 45);
-            this.trackBar4.TabIndex = 19;
+            this.batTrackBar.Location = new System.Drawing.Point(583, 125);
+            this.batTrackBar.Name = "batTrackBar";
+            this.batTrackBar.Size = new System.Drawing.Size(246, 45);
+            this.batTrackBar.TabIndex = 7;
             // 
-            // trackBar5
+            // hrTrackBar
             // 
-            this.trackBar5.Location = new System.Drawing.Point(583, 74);
-            this.trackBar5.Name = "trackBar5";
-            this.trackBar5.Size = new System.Drawing.Size(246, 45);
-            this.trackBar5.TabIndex = 18;
+            this.hrTrackBar.Location = new System.Drawing.Point(583, 74);
+            this.hrTrackBar.Name = "hrTrackBar";
+            this.hrTrackBar.Size = new System.Drawing.Size(246, 45);
+            this.hrTrackBar.TabIndex = 6;
             // 
-            // trackBar6
+            // ibiTrackBar
             // 
-            this.trackBar6.Location = new System.Drawing.Point(583, 22);
-            this.trackBar6.Name = "trackBar6";
-            this.trackBar6.Size = new System.Drawing.Size(246, 45);
-            this.trackBar6.TabIndex = 17;
+            this.ibiTrackBar.Location = new System.Drawing.Point(583, 22);
+            this.ibiTrackBar.Name = "ibiTrackBar";
+            this.ibiTrackBar.Size = new System.Drawing.Size(246, 45);
+            this.ibiTrackBar.TabIndex = 5;
             // 
-            // textBox7
+            // tmpTextBox
             // 
-            this.textBox7.Enabled = false;
-            this.textBox7.Location = new System.Drawing.Point(398, 171);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.ReadOnly = true;
-            this.textBox7.Size = new System.Drawing.Size(36, 20);
-            this.textBox7.TabIndex = 28;
+            this.tmpTextBox.Enabled = false;
+            this.tmpTextBox.Location = new System.Drawing.Point(398, 171);
+            this.tmpTextBox.Name = "tmpTextBox";
+            this.tmpTextBox.ReadOnly = true;
+            this.tmpTextBox.Size = new System.Drawing.Size(36, 20);
+            this.tmpTextBox.TabIndex = 28;
             // 
-            // label7
+            // tmpLabel
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(49, 173);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(91, 13);
-            this.label7.TabIndex = 27;
-            this.label7.Text = "Skin Temperature";
+            this.tmpLabel.AutoSize = true;
+            this.tmpLabel.Location = new System.Drawing.Point(49, 173);
+            this.tmpLabel.Name = "tmpLabel";
+            this.tmpLabel.Size = new System.Drawing.Size(91, 13);
+            this.tmpLabel.TabIndex = 27;
+            this.tmpLabel.Text = "Skin Temperature";
             // 
-            // trackBar7
+            // tmpTrackBar
             // 
-            this.trackBar7.Location = new System.Drawing.Point(151, 171);
-            this.trackBar7.Name = "trackBar7";
-            this.trackBar7.Size = new System.Drawing.Size(246, 45);
-            this.trackBar7.TabIndex = 26;
+            this.tmpTrackBar.Location = new System.Drawing.Point(151, 171);
+            this.tmpTrackBar.Name = "tmpTrackBar";
+            this.tmpTrackBar.Size = new System.Drawing.Size(246, 45);
+            this.tmpTrackBar.TabIndex = 4;
             // 
-            // textBox8
+            // tagTextBox
             // 
-            this.textBox8.Enabled = false;
-            this.textBox8.Location = new System.Drawing.Point(836, 170);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.ReadOnly = true;
-            this.textBox8.Size = new System.Drawing.Size(36, 20);
-            this.textBox8.TabIndex = 31;
+            this.tagTextBox.Enabled = false;
+            this.tagTextBox.Location = new System.Drawing.Point(836, 170);
+            this.tagTextBox.Name = "tagTextBox";
+            this.tagTextBox.ReadOnly = true;
+            this.tagTextBox.Size = new System.Drawing.Size(36, 20);
+            this.tagTextBox.TabIndex = 31;
             // 
-            // label8
+            // tagLabel
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(492, 174);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(86, 13);
-            this.label8.TabIndex = 30;
-            this.label8.Text = "Tag from Device";
+            this.tagLabel.AutoSize = true;
+            this.tagLabel.Location = new System.Drawing.Point(492, 174);
+            this.tagLabel.Name = "tagLabel";
+            this.tagLabel.Size = new System.Drawing.Size(86, 13);
+            this.tagLabel.TabIndex = 30;
+            this.tagLabel.Text = "Tag from Device";
             // 
-            // trackBar8
+            // tagTrackBar
             // 
-            this.trackBar8.Location = new System.Drawing.Point(583, 171);
-            this.trackBar8.Name = "trackBar8";
-            this.trackBar8.Size = new System.Drawing.Size(246, 45);
-            this.trackBar8.TabIndex = 29;
+            this.tagTrackBar.Location = new System.Drawing.Point(583, 171);
+            this.tagTrackBar.Name = "tagTrackBar";
+            this.tagTrackBar.Size = new System.Drawing.Size(246, 45);
+            this.tagTrackBar.TabIndex = 8;
             // 
             // Form1
             // 
@@ -341,14 +341,14 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.accTrackBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bvpTrackBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gsrTrackBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.batTrackBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.hrTrackBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ibiTrackBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tmpTrackBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tagTrackBar)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -359,30 +359,30 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button closeButton;
-        private System.Windows.Forms.TrackBar trackBar3;
-        private System.Windows.Forms.TrackBar trackBar2;
-        private System.Windows.Forms.TrackBar trackBar1;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TrackBar trackBar4;
-        private System.Windows.Forms.TrackBar trackBar5;
-        private System.Windows.Forms.TrackBar trackBar6;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TrackBar trackBar8;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TrackBar trackBar7;
+        private System.Windows.Forms.TrackBar gsrTrackBar;
+        private System.Windows.Forms.TrackBar bvpTrackBar;
+        private System.Windows.Forms.TrackBar accTrackBar;
+        private System.Windows.Forms.TextBox batTextBox;
+        private System.Windows.Forms.TextBox hrTtextBox;
+        private System.Windows.Forms.TextBox ibiTextBox;
+        private System.Windows.Forms.Label ibiLabel;
+        private System.Windows.Forms.Label hrLabel;
+        private System.Windows.Forms.Label batLabel;
+        private System.Windows.Forms.TrackBar batTrackBar;
+        private System.Windows.Forms.TrackBar hrTrackBar;
+        private System.Windows.Forms.TrackBar ibiTrackBar;
+        private System.Windows.Forms.TextBox gsrTextBox;
+        private System.Windows.Forms.TextBox bvpTextBox;
+        private System.Windows.Forms.TextBox accTextBox;
+        private System.Windows.Forms.Label accLabel;
+        private System.Windows.Forms.Label bvpLabel;
+        private System.Windows.Forms.Label gsrLabel;
+        private System.Windows.Forms.TextBox tagTextBox;
+        private System.Windows.Forms.Label tagLabel;
+        private System.Windows.Forms.TrackBar tagTrackBar;
+        private System.Windows.Forms.TextBox tmpTextBox;
+        private System.Windows.Forms.Label tmpLabel;
+        private System.Windows.Forms.TrackBar tmpTrackBar;
     }
 }
 
