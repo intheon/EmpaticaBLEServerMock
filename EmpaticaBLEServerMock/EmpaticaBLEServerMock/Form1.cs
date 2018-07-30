@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using System.Threading;
+
+
 namespace EmpaticaBLEServerMock
 {
     public partial class Form1 : Form
@@ -15,12 +18,17 @@ namespace EmpaticaBLEServerMock
 
         private AsynchronousSocketListener listener = null;
         SensorValues sensorValues = new SensorValues();
+        Thread listenerThread;
 
         public Form1()
         {
             InitializeComponent();
 
             listener = new AsynchronousSocketListener();
+
+            listenerThread = new Thread(listener.StartListening);
+            listenerThread.Start();
+            ;
         }
 
         private void closeButton_Click(object sender, EventArgs e)

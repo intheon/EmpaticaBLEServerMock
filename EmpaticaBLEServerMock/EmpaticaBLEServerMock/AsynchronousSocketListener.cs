@@ -20,6 +20,8 @@ namespace EmpaticaBLEServerMock
         Thread thread;
         Socket handler;
 
+        bool stop = false;
+
 
         public AsynchronousSocketListener()
         {
@@ -52,7 +54,7 @@ namespace EmpaticaBLEServerMock
                 listener.Bind(localEndPoint);
                 listener.Listen(100);
 
-                while (true)
+                while (!stop)
                 {
                     // Set the event to nonsignaled state.  
                     allDone.Reset();
@@ -291,7 +293,13 @@ Protocol Example (Manual BTLE)
 
         public void close()
         {
+
+            allDone.Set();
+
             handler.Close();
+
+            stop = true;
+
         }
     }
 }
