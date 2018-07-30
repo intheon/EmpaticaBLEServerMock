@@ -31,6 +31,7 @@ namespace EmpaticaBLEServerMock
             }
 
             thread = new Thread(manageSubscriptions);
+            thread.IsBackground = true;
             thread.Start();
         }
 
@@ -277,7 +278,7 @@ Protocol Example (Manual BTLE)
 
         private void manageSubscriptions()
         {
-            while (true)
+            while (!stop)
             {
                 for (int i = 0; i < E4Streams.STREAMS_STRINGS.Count; ++i)
                 {
@@ -296,10 +297,14 @@ Protocol Example (Manual BTLE)
 
             allDone.Set();
 
-            handler.Close();
+            if (handler != null)
+            {
+                handler.Shutdown(SocketShutdown.Both);
+                //handler.Close();
+            }
 
             stop = true;
-
+            thread = null;
         }
     }
 }

@@ -34,6 +34,7 @@ namespace EmpaticaBLEServerMock
         private void closeButton_Click(object sender, EventArgs e)
         {
             listener.close();
+            listener = null;
             Application.Exit();
         }
 
