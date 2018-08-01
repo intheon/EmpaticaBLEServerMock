@@ -24,7 +24,7 @@ namespace EmpaticaBLEServerMock
         {
             InitializeComponent();
 
-            listener = new AsynchronousSocketListener();
+            listener = new AsynchronousSocketListener(sensorValues);
 
             listenerThread = new Thread(listener.StartListening);
             listenerThread.Start();

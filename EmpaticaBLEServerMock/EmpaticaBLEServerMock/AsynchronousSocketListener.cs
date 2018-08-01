@@ -21,14 +21,19 @@ namespace EmpaticaBLEServerMock
         Socket handler;
 
         bool stop = false;
+        bool connected = false;
+
+        private SensorValues sensorValues;
 
 
-        public AsynchronousSocketListener()
+        public AsynchronousSocketListener(SensorValues sensorValues)
         {
             for (int i = 0; i < subscriptions.Length; ++i)
             {
                 subscriptions[i] = false;
             }
+            
+            this.sensorValues = sensorValues;
 
             thread = new Thread(manageSubscriptions);
             thread.IsBackground = true;
@@ -120,8 +125,19 @@ namespace EmpaticaBLEServerMock
                 // more data.  
                 content = state.sb.ToString();
 
-                string messageType = content.Substring(0, content.IndexOf(' '));
-                string restOfMessage = content.Substring(content.IndexOf(' ') + 1);
+                if(content.Contains("\r\n"))
+                {
+                    content = content.Substring(0, content.Length - 2);
+                }
+
+                string messageType = content;
+                string restOfMessage = "";
+
+                if (content.IndexOf(' ') > -1)
+                {
+                    messageType = content.Substring(0, content.IndexOf(' '));
+                    restOfMessage = content.Substring(content.IndexOf(' ') + 1);
+                }
 
                 /*
                  * [OPEN TCP CONNECTION]
@@ -178,49 +194,69 @@ Protocol Example (Manual BTLE)
   <==  R device_disconnect OK
   */
 
-
-                switch (messageType)
+                if (!connected && (!"device_list".Equals(messageType) && !"device_connect".Equals(messageType)))
                 {
-                    case "device_subscribe":
-                        string device = restOfMessage.Substring(0, restOfMessage.IndexOf(' '));
-                        string subscriptionType = restOfMessage.Substring(restOfMessage.IndexOf(' ') + 1);
+                    //R device_subscribe bat ERR You are not connected to any device
+                    string deviceString = restOfMessage.Substring(0, 3);
+                    Send(handler, "R " + messageType + " " + deviceString + " ERROR You are not connected to any device");
+                }
+                else
+                { 
+                    switch (messageType)
+                    {
+                        case "device_subscribe":
+                            string device = restOfMessage.Substring(0, restOfMessage.IndexOf(' '));
+                            string subscriptionType = restOfMessage.Substring(restOfMessage.IndexOf(' ') + 1);
 
-                        int position = E4Streams.STREAMS_STRINGS.IndexOf(device.ToLower());
+                            int position = E4Streams.STREAMS_STRINGS.IndexOf(device.ToLower());
 
-                        if (position != -1)
-                        {
-                            if ("on".Equals(subscriptionType.ToLower()))
+                            if (position != -1)
                             {
-                                Send(handler, "R device_subscribe " + device.ToLower() + " OK\r\n");
-                                subscriptions[position] = true;
+                                if ("on".Equals(subscriptionType.ToLower()))
+                                {
+                                    Send(handler, "R device_subscribe " + device.ToLower() + " OK\r\n");
+                                    subscriptions[position] = true;
+                                }
+                                else if ("off".Equals(subscriptionType.ToLower()))
+                                {
+                                    subscriptions[position] = false;
+                                    Send(handler, "R device_subscribe " + device.ToLower() + " OK\r\n");
+                                }
                             }
-                            else if ("off".Equals(subscriptionType.ToLower()))
-                            {
-                                subscriptions[position] = false;
-                                Send(handler, "R device_subscribe " + device.ToLower() + " OK\r\n");
-                            }
-                        }
 
-                        break;
-                    case "device_connect":
-                        break;
-                    case "device_list":
-                        break;
-                    case "device_discover_list":
-                        break;
-                    case "device_connect_btle":
-                        break;
-                    case "device_disconnect":
-                        break;
-                    case "pause":
-                        break;
-                    default:
-                        Console.WriteLine("Message not recognized");
-                        break;
+                            break;
+                        case "device_connect":
+                            if ("CF3864".Equals(restOfMessage))
+                            {
+                                connected = true;
+                                Send(handler, "R device_connect OK\r\n");
+                            }
+                            else
+                            {
+                                Send(handler, "R device not available\r\n");
+                            }
+                            break;
+                        case "device_list":
+
+                            Send(handler, "R device_list 1 | CF3864 Empatica_E4\r\n");
+
+                            break;
+                        case "device_discover_list":
+                            break;
+                        case "device_connect_btle":
+                            break;
+                        case "device_disconnect":
+                            break;
+                        case "pause":
+                            break;
+                        default:
+                            Console.WriteLine("Message not recognized");
+                            break;
+                    }
                 }
 
 
-                if (content.IndexOf("<EOF>") > -1)
+                /*if (content.IndexOf("<EOF>") > -1)
                 {
                     // All the data has been read from the   
                     // client. Display it on the console.  
@@ -241,7 +277,10 @@ Protocol Example (Manual BTLE)
                     // Not all data received. Get more.  
                     handler.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0,
                     new AsyncCallback(ReadCallback), state);
-                }
+                }*/
+
+                handler.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0,
+                        new AsyncCallback(ReadCallback), state);
             }
         }
 
@@ -278,13 +317,43 @@ Protocol Example (Manual BTLE)
 
         private void manageSubscriptions()
         {
+            string message = "";
             while (!stop)
             {
                 for (int i = 0; i < E4Streams.STREAMS_STRINGS.Count; ++i)
                 {
                     if (subscriptions[i])
                     {
-                        Send(handler, "E4_" + E4Streams.STREAMS_STRINGS[i] + " \r\n");
+                        // Calculate time as Linux time in seconds
+                        DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+                        TimeSpan diff = DateTime.Now.ToUniversalTime() - origin;
+                        double total = diff.TotalSeconds;
+                        String timeString = total.ToString();
+                        switch (E4Streams.STREAMS_STRINGS[i])
+                        {
+                            case "acc": //3-axis acceleration
+                                message = "E4_Acc " + timeString + " " + sensorValues.acc + " " + sensorValues.acc + " " + sensorValues.acc;
+                                break;
+                            case "bvp": //Blood Volume Pulse
+                                message = "E4_Bvp " + timeString + " " + sensorValues.bvp;
+                                break;
+                            case "gsr": //Galvanic Skin Response
+                                message = "E4_Gsr " + timeString + " " + sensorValues.gsr;
+                                break;
+                            case "ibi": //Interbeat Interval and Heartbeat
+                                message = "E4_Ibi " + timeString + " " + sensorValues.ibi + "\r\nE4_Hr " + timeString + " " + sensorValues.hr;
+                                break;
+                            case "tmp": //Skin Temperature
+                                message = "E4_Temperature " + timeString + " " + sensorValues.tmp;
+                                break;
+                            case "bat": //Device Battery
+                                message = "E4_Battery " + timeString + " " + sensorValues.bat;
+                                break;
+                            case "tag":
+                                message = "E4_Tag " + timeString + " " + sensorValues.tag;
+                                break;
+                        }
+                        Send(handler, message + "\r\n");
                     }
                 }
 
