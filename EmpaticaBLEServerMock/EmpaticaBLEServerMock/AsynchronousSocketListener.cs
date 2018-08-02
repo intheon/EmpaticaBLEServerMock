@@ -246,6 +246,11 @@ Protocol Example (Manual BTLE)
                         case "device_connect_btle":
                             break;
                         case "device_disconnect":
+                            if(connected)
+                            {
+                                Send(handler, "R device_disconnect OK\r\n");
+
+                            }
                             break;
                         case "pause":
                             break;
