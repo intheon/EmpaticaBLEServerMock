@@ -17,7 +17,8 @@ namespace EmpaticaBLEServerMock
         // Thread signal.  
         public static ManualResetEvent allDone = new ManualResetEvent(false);
 
-        Thread thread;
+        Thread listenerThread;
+        Thread subscriptionsThread;
         Socket handler;
 
         bool stop = false;
@@ -35,12 +36,19 @@ namespace EmpaticaBLEServerMock
             
             this.sensorValues = sensorValues;
 
-            thread = new Thread(manageSubscriptions);
-            thread.IsBackground = true;
-            thread.Start();
+            subscriptionsThread = new Thread(manageSubscriptions);
+            subscriptionsThread.IsBackground = true;
+            subscriptionsThread.Start();
         }
 
         public void StartListening()
+        {
+            listenerThread = new Thread(StartListeningThread);
+            listenerThread.IsBackground = true;
+            listenerThread.Start();
+        }
+
+        public void StartListeningThread()
         {
             // Establish the local endpoint for the socket.  
             // The DNS name of the computer  
@@ -323,21 +331,21 @@ Protocol Example (Manual BTLE)
         private void manageSubscriptions()
         {
             string message = "";
+            Boolean sendMessage;
             while (!stop)
             {
                 for (int i = 0; i < E4Streams.STREAMS_STRINGS.Count; ++i)
                 {
+                    sendMessage = true;
                     if (subscriptions[i])
                     {
                         // Calculate time as Linux time in seconds
-                        DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
-                        TimeSpan diff = DateTime.Now.ToUniversalTime() - origin;
-                        double total = diff.TotalSeconds;
-                        String timeString = total.ToString();
+                        String timeString = GetTimeString();
+
                         switch (E4Streams.STREAMS_STRINGS[i])
                         {
                             case "acc": //3-axis acceleration
-                                message = "E4_Acc " + timeString + " " + sensorValues.acc + " " + sensorValues.acc + " " + sensorValues.acc;
+                                message = "E4_Acc " + timeString + " " + sensorValues.accX + " " + sensorValues.accY + " " + sensorValues.accZ;
                                 break;
                             case "bvp": //Blood Volume Pulse
                                 message = "E4_Bvp " + timeString + " " + sensorValues.bvp;
@@ -355,10 +363,14 @@ Protocol Example (Manual BTLE)
                                 message = "E4_Battery " + timeString + " " + sensorValues.bat;
                                 break;
                             case "tag":
-                                message = "E4_Tag " + timeString + " " + sensorValues.tag;
+                                //message = "E4_Tag " + timeString + "\r\n";// + sensorValues.tag;
+                                sendMessage = false;
                                 break;
                         }
-                        Send(handler, message + "\r\n");
+                        if (sendMessage)
+                        {
+                            Send(handler, message + "\r\n");
+                        }
                     }
                 }
 
@@ -378,7 +390,32 @@ Protocol Example (Manual BTLE)
             }
 
             stop = true;
-            thread = null;
+            subscriptionsThread = null;
+            listenerThread = null;
+        }
+
+        public void SendTagMessage()
+        {
+            if (subscriptions[E4Streams.STREAMS_STRINGS.IndexOf("tag")])
+            {
+                // Calculate time as Linux time in seconds
+                String timeString = GetTimeString();
+
+                string message = "E4_Tag " + timeString;// + sensorValues.tag;
+                Send(handler, message + "\r\n");
+            }
+        }
+
+        // Calculate time as Linux time in seconds
+        private string GetTimeString()
+        {
+            
+            DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+            TimeSpan diff = DateTime.Now.ToUniversalTime() - origin;
+            double total = diff.TotalSeconds;
+            String timeString = total.ToString();
+
+            return timeString;
         }
     }
 }

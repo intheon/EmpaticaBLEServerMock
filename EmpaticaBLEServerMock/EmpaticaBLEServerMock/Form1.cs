@@ -15,7 +15,7 @@ namespace EmpaticaBLEServerMock
 {
     public partial class Form1 : Form
     {
-
+        private const double SECONDS_IN_MINUTE = 60.0;
         private AsynchronousSocketListener listener = null;
         SensorValues sensorValues = new SensorValues();
         Thread listenerThread;
@@ -25,10 +25,10 @@ namespace EmpaticaBLEServerMock
             InitializeComponent();
 
             listener = new AsynchronousSocketListener(sensorValues);
+            listener.StartListening();
 
-            listenerThread = new Thread(listener.StartListening);
-            listenerThread.Start();
-            ;
+            //listenerThread = new Thread(listener.StartListening);
+            //listenerThread.Start();
         }
 
         private void closeButton_Click(object sender, EventArgs e)
@@ -38,16 +38,40 @@ namespace EmpaticaBLEServerMock
             Application.Exit();
         }
 
-        private void accNumericUpDown_ValueChanged(object sender, EventArgs e)
+        private void accXNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
-            accTrackBar.Value = (int)accNumericUpDown.Value;
-            sensorValues.acc = (double)accNumericUpDown.Value;
+            accXTrackBar.Value = (int)accXNumericUpDown.Value;
+            sensorValues.accX = (double)accXNumericUpDown.Value;
         }
 
-        private void accTrackBar_Scroll(object sender, EventArgs e)
+        private void accXTrackBar_Scroll(object sender, EventArgs e)
         {
-            accNumericUpDown.Value = accTrackBar.Value;
-            sensorValues.acc = (double)accNumericUpDown.Value;
+            accXNumericUpDown.Value = accXTrackBar.Value;
+            sensorValues.accX = (double)accXNumericUpDown.Value;
+        }
+
+        private void accYNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            accYTrackBar.Value = (int)accYNumericUpDown.Value;
+            sensorValues.accY = (double)accYNumericUpDown.Value;
+        }
+
+        private void accYTrackBar_Scroll(object sender, EventArgs e)
+        {
+            accYNumericUpDown.Value = accYTrackBar.Value;
+            sensorValues.accY = (double)accYNumericUpDown.Value;
+        }
+
+        private void accZNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            accZTrackBar.Value = (int)accZNumericUpDown.Value;
+            sensorValues.accZ = (double)accZNumericUpDown.Value;
+        }
+
+        private void accZTrackBar_Scroll(object sender, EventArgs e)
+        {
+            accZNumericUpDown.Value = accZTrackBar.Value;
+            sensorValues.accZ = (double)accZNumericUpDown.Value;
         }
 
         private void bvpNumericUpDown_ValueChanged(object sender, EventArgs e)
@@ -86,28 +110,21 @@ namespace EmpaticaBLEServerMock
             sensorValues.tmp = (double)tmpNumericUpDown.Value;
         }
 
-        private void ibiNumericUpDown_ValueChanged(object sender, EventArgs e)
-        {
-            ibiTrackBar.Value = (int)ibiNumericUpDown.Value;
-            sensorValues.ibi = (double)ibiNumericUpDown.Value;
-        }
-
-        private void ibiTrackBar_Scroll(object sender, EventArgs e)
-        {
-            ibiNumericUpDown.Value = ibiTrackBar.Value;
-            sensorValues.ibi = (double)ibiNumericUpDown.Value;
-        }
 
         private void hrNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             hrTrackBar.Value = (int)hrNumericUpDown.Value;
             sensorValues.hr = (double)hrNumericUpDown.Value;
+
+            sensorValues.ibi = SECONDS_IN_MINUTE / sensorValues.hr;
         }
 
         private void hrTrackBar_Scroll(object sender, EventArgs e)
         {
             hrNumericUpDown.Value = hrTrackBar.Value;
             sensorValues.hr = (double)hrNumericUpDown.Value;
+
+            sensorValues.ibi = SECONDS_IN_MINUTE / sensorValues.hr;
         }
 
         private void batNumericUpDown_ValueChanged(object sender, EventArgs e)
@@ -122,16 +139,11 @@ namespace EmpaticaBLEServerMock
             sensorValues.bat = (double)batNumericUpDown.Value;
         }
 
-        private void tagNumericUpDown_ValueChanged(object sender, EventArgs e)
+        private void tagButton_Click(object sender, EventArgs e)
         {
-            tagTrackBar.Value = (int)tagNumericUpDown.Value;
-            sensorValues.tag = (double)tagNumericUpDown.Value;
+            listener.SendTagMessage();
         }
 
-        private void tagTrackBar_Scroll(object sender, EventArgs e)
-        {
-            tagNumericUpDown.Value = tagTrackBar.Value;
-            sensorValues.tag = (double)tagNumericUpDown.Value;
-        }
+        
     }
 }
