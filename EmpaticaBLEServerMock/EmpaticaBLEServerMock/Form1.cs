@@ -18,7 +18,6 @@ namespace EmpaticaBLEServerMock
         private const double SECONDS_IN_MINUTE = 60.0;
         private AsynchronousSocketListener listener = null;
         SensorValues sensorValues = new SensorValues();
-        Thread listenerThread;
 
         public Form1()
         {
@@ -29,6 +28,21 @@ namespace EmpaticaBLEServerMock
 
             //listenerThread = new Thread(listener.StartListening);
             //listenerThread.Start();
+
+            sensorValues.accX = (double)accXNumericUpDown.Value;
+            sensorValues.accY = (double)accYNumericUpDown.Value;
+            sensorValues.accZ = (double)accZNumericUpDown.Value;
+
+            sensorValues.bat = (double)batNumericUpDown.Value;
+
+            sensorValues.bvp = (double)bvpNumericUpDown.Value;
+
+            sensorValues.gsr = (double)gsrNumericUpDown.Value;
+
+            sensorValues.hr = (double)hrNumericUpDown.Value;
+            sensorValues.ibi = SECONDS_IN_MINUTE / sensorValues.hr;
+
+            sensorValues.tmp = (double)tmpNumericUpDown.Value;
         }
 
         private void closeButton_Click(object sender, EventArgs e)

@@ -23,15 +23,25 @@ namespace EmpaticaBLEServerMock
 
         bool stop = false;
         bool connected = false;
+        bool disconnected = false;
 
         private SensorValues sensorValues;
 
+        private StateObject stateObject;
+
+        static readonly object locker = new object();
+
+        private List<double> lastTimeStamp = new List<double>();
 
         public AsynchronousSocketListener(SensorValues sensorValues)
         {
+
+            double timeStart = GetTimeInSeconds();
+
             for (int i = 0; i < subscriptions.Length; ++i)
             {
                 subscriptions[i] = false;
+                lastTimeStamp.Add(timeStart);
             }
             
             this.sensorValues = sensorValues;
@@ -94,6 +104,28 @@ namespace EmpaticaBLEServerMock
 
         }
 
+        public void Disconnect()
+        {
+            // Get the socket that handles the client request.  
+            handler.BeginDisconnect(true, new AsyncCallback(DisconnectCallback), stateObject);
+        }
+
+        public void DisconnectCallback(IAsyncResult ar)
+        {
+            lock (locker)
+            {             // Set status to disconnected first to avoid setting new callbacks
+                disconnected = true;
+                connected = false;
+
+                StateObject state = (StateObject)ar.AsyncState;
+                Socket s = state.workSocket;
+
+
+                s.EndDisconnect(ar);
+
+            }
+        }
+
         public void AcceptCallback(IAsyncResult ar)
         {
             // Signal the main thread to continue.  
@@ -104,10 +136,12 @@ namespace EmpaticaBLEServerMock
             handler = listener.EndAccept(ar);
 
             // Create the state object.  
-            StateObject state = new StateObject();
-            state.workSocket = handler;
-            handler.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0,
-                new AsyncCallback(ReadCallback), state);
+            stateObject = new StateObject();
+            stateObject.workSocket = handler;
+            handler.BeginReceive(stateObject.buffer, 0, StateObject.BufferSize, 0,
+                new AsyncCallback(ReadCallback), stateObject);
+
+            //
         }
 
         public void ReadCallback(IAsyncResult ar)
@@ -205,7 +239,15 @@ Protocol Example (Manual BTLE)
                 if (!connected && (!"device_list".Equals(messageType) && !"device_connect".Equals(messageType)))
                 {
                     //R device_subscribe bat ERR You are not connected to any device
-                    string deviceString = restOfMessage.Substring(0, 3);
+                    string deviceString;
+                    if (restOfMessage.Length > 3)
+                    {
+                        deviceString = restOfMessage.Substring(0, 3);
+                    }
+                    else
+                    {
+                        deviceString = "";
+                    }
                     Send(handler, "R " + messageType + " " + deviceString + " ERROR You are not connected to any device");
                 }
                 else
@@ -234,14 +276,18 @@ Protocol Example (Manual BTLE)
 
                             break;
                         case "device_connect":
-                            if ("CF3864".Equals(restOfMessage))
+                            lock (locker)
                             {
-                                connected = true;
-                                Send(handler, "R device_connect OK\r\n");
-                            }
-                            else
-                            {
-                                Send(handler, "R device not available\r\n");
+                                if ("CF3864".Equals(restOfMessage))
+                                {
+                                    connected = true;
+                                    disconnected = false;
+                                    Send(handler, "R device_connect OK\r\n");
+                                }
+                                else
+                                {
+                                    Send(handler, "R device not available\r\n");
+                                }
                             }
                             break;
                         case "device_list":
@@ -257,6 +303,7 @@ Protocol Example (Manual BTLE)
                             if(connected)
                             {
                                 Send(handler, "R device_disconnect OK\r\n");
+                                Disconnect();
 
                             }
                             break;
@@ -291,9 +338,35 @@ Protocol Example (Manual BTLE)
                     handler.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0,
                     new AsyncCallback(ReadCallback), state);
                 }*/
+                try
+                {
 
-                handler.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0,
+                    handler.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0,
                         new AsyncCallback(ReadCallback), state);
+
+                }
+                catch (SocketException e)
+                {
+                    //This exception is thrown by the system when the connection to the socket is closed
+                    if (!disconnected)
+                    {
+                        Console.WriteLine("Error: " + e.ErrorCode);
+                        Console.WriteLine("Message: " + e.Message);
+                        Console.WriteLine(e.ToString());
+                    }
+                    else
+                    {
+                        Console.WriteLine("Connection closed by user. Program status is OK");
+                    }
+                }
+                catch (Exception e)
+                {
+                    if (!disconnected)
+                    {
+                        Console.WriteLine("Message: " + e.Message);
+                        Console.WriteLine(e.ToString());
+                    }
+                }
             }
         }
 
@@ -334,11 +407,12 @@ Protocol Example (Manual BTLE)
             Boolean sendMessage;
             while (!stop)
             {
+                double timeNow = GetTimeInSeconds();
                 for (int i = 0; i < E4Streams.STREAMS_STRINGS.Count; ++i)
                 {
                     sendMessage = true;
-                    if (subscriptions[i])
-                    {
+                    if (subscriptions[i] && (E4Streams.STREAMS_FREQUENCIES[i] > 0) && (timeNow - lastTimeStamp[i] > E4Streams.STREAMS_FREQUENCIES[i]))
+                    {     
                         // Calculate time as Linux time in seconds
                         String timeString = GetTimeString();
 
@@ -370,6 +444,8 @@ Protocol Example (Manual BTLE)
                         if (sendMessage)
                         {
                             Send(handler, message + "\r\n");
+
+                            lastTimeStamp[i] = timeNow;
                         }
                     }
                 }
@@ -406,13 +482,21 @@ Protocol Example (Manual BTLE)
             }
         }
 
+
         // Calculate time as Linux time in seconds
-        private string GetTimeString()
+        private double GetTimeInSeconds()
         {
-            
             DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
             TimeSpan diff = DateTime.Now.ToUniversalTime() - origin;
             double total = diff.TotalSeconds;
+
+            return total;
+        }
+
+        // Calculate time as Linux time in seconds
+        private string GetTimeString()
+        {
+            double total = GetTimeInSeconds();
             String timeString = total.ToString();
 
             return timeString;

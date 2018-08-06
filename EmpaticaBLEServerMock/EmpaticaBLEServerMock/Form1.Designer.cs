@@ -144,9 +144,10 @@
             this.accZTrackBar.LargeChange = 10;
             this.accZTrackBar.Location = new System.Drawing.Point(109, 106);
             this.accZTrackBar.Maximum = 100;
+            this.accZTrackBar.Minimum = -100;
             this.accZTrackBar.Name = "accZTrackBar";
             this.accZTrackBar.Size = new System.Drawing.Size(246, 45);
-            this.accZTrackBar.TabIndex = 36;
+            this.accZTrackBar.TabIndex = 5;
             this.accZTrackBar.TickFrequency = 10;
             this.accZTrackBar.Scroll += new System.EventHandler(this.accZTrackBar_Scroll);
             // 
@@ -154,11 +155,16 @@
             // 
             this.accZNumericUpDown.InterceptArrowKeys = false;
             this.accZNumericUpDown.Location = new System.Drawing.Point(362, 106);
+            this.accZNumericUpDown.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
             this.accZNumericUpDown.Name = "accZNumericUpDown";
             this.accZNumericUpDown.ReadOnly = true;
             this.accZNumericUpDown.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.accZNumericUpDown.Size = new System.Drawing.Size(49, 20);
-            this.accZNumericUpDown.TabIndex = 38;
+            this.accZNumericUpDown.TabIndex = 6;
             this.accZNumericUpDown.ValueChanged += new System.EventHandler(this.accZNumericUpDown_ValueChanged);
             // 
             // accYLabel
@@ -176,9 +182,10 @@
             this.accYTrackBar.LargeChange = 10;
             this.accYTrackBar.Location = new System.Drawing.Point(109, 58);
             this.accYTrackBar.Maximum = 100;
+            this.accYTrackBar.Minimum = -100;
             this.accYTrackBar.Name = "accYTrackBar";
             this.accYTrackBar.Size = new System.Drawing.Size(246, 45);
-            this.accYTrackBar.TabIndex = 33;
+            this.accYTrackBar.TabIndex = 3;
             this.accYTrackBar.TickFrequency = 10;
             this.accYTrackBar.Scroll += new System.EventHandler(this.accYTrackBar_Scroll);
             // 
@@ -186,11 +193,16 @@
             // 
             this.accYNumericUpDown.InterceptArrowKeys = false;
             this.accYNumericUpDown.Location = new System.Drawing.Point(362, 58);
+            this.accYNumericUpDown.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
             this.accYNumericUpDown.Name = "accYNumericUpDown";
             this.accYNumericUpDown.ReadOnly = true;
             this.accYNumericUpDown.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.accYNumericUpDown.Size = new System.Drawing.Size(49, 20);
-            this.accYNumericUpDown.TabIndex = 35;
+            this.accYNumericUpDown.TabIndex = 4;
             this.accYNumericUpDown.ValueChanged += new System.EventHandler(this.accYNumericUpDown_ValueChanged);
             // 
             // accXLabel
@@ -208,6 +220,7 @@
             this.accXTrackBar.LargeChange = 10;
             this.accXTrackBar.Location = new System.Drawing.Point(109, 10);
             this.accXTrackBar.Maximum = 100;
+            this.accXTrackBar.Minimum = -100;
             this.accXTrackBar.Name = "accXTrackBar";
             this.accXTrackBar.Size = new System.Drawing.Size(246, 45);
             this.accXTrackBar.TabIndex = 1;
@@ -218,11 +231,16 @@
             // 
             this.accXNumericUpDown.InterceptArrowKeys = false;
             this.accXNumericUpDown.Location = new System.Drawing.Point(362, 10);
+            this.accXNumericUpDown.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
             this.accXNumericUpDown.Name = "accXNumericUpDown";
             this.accXNumericUpDown.ReadOnly = true;
             this.accXNumericUpDown.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.accXNumericUpDown.Size = new System.Drawing.Size(49, 20);
-            this.accXNumericUpDown.TabIndex = 32;
+            this.accXNumericUpDown.TabIndex = 2;
             this.accXNumericUpDown.ValueChanged += new System.EventHandler(this.accXNumericUpDown_ValueChanged);
             // 
             // tagButton
@@ -230,7 +248,7 @@
             this.tagButton.Location = new System.Drawing.Point(401, 242);
             this.tagButton.Name = "tagButton";
             this.tagButton.Size = new System.Drawing.Size(103, 23);
-            this.tagButton.TabIndex = 40;
+            this.tagButton.TabIndex = 17;
             this.tagButton.Text = "Tag from Device";
             this.tagButton.UseVisualStyleBackColor = true;
             this.tagButton.Click += new System.EventHandler(this.tagButton_Click);
@@ -242,7 +260,12 @@
             this.batNumericUpDown.Name = "batNumericUpDown";
             this.batNumericUpDown.ReadOnly = true;
             this.batNumericUpDown.Size = new System.Drawing.Size(49, 20);
-            this.batNumericUpDown.TabIndex = 38;
+            this.batNumericUpDown.TabIndex = 16;
+            this.batNumericUpDown.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
             this.batNumericUpDown.ValueChanged += new System.EventHandler(this.batNumericUpDown_ValueChanged);
             // 
             // hrNumericUpDown
@@ -254,17 +277,12 @@
             0,
             0,
             0});
-            this.hrNumericUpDown.Minimum = new decimal(new int[] {
-            35,
-            0,
-            0,
-            0});
             this.hrNumericUpDown.Name = "hrNumericUpDown";
             this.hrNumericUpDown.ReadOnly = true;
             this.hrNumericUpDown.Size = new System.Drawing.Size(49, 20);
-            this.hrNumericUpDown.TabIndex = 37;
+            this.hrNumericUpDown.TabIndex = 14;
             this.hrNumericUpDown.Value = new decimal(new int[] {
-            35,
+            70,
             0,
             0,
             0});
@@ -272,6 +290,12 @@
             // 
             // tmpNumericUpDown
             // 
+            this.tmpNumericUpDown.DecimalPlaces = 1;
+            this.tmpNumericUpDown.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.tmpNumericUpDown.InterceptArrowKeys = false;
             this.tmpNumericUpDown.Location = new System.Drawing.Point(835, 72);
             this.tmpNumericUpDown.Maximum = new decimal(new int[] {
@@ -287,12 +311,12 @@
             this.tmpNumericUpDown.Name = "tmpNumericUpDown";
             this.tmpNumericUpDown.ReadOnly = true;
             this.tmpNumericUpDown.Size = new System.Drawing.Size(49, 20);
-            this.tmpNumericUpDown.TabIndex = 35;
+            this.tmpNumericUpDown.TabIndex = 12;
             this.tmpNumericUpDown.Value = new decimal(new int[] {
-            25,
+            365,
             0,
             0,
-            0});
+            65536});
             this.tmpNumericUpDown.ValueChanged += new System.EventHandler(this.tmpNumericUpDown_ValueChanged);
             // 
             // gsrNumericUpDown
@@ -302,17 +326,22 @@
             this.gsrNumericUpDown.Name = "gsrNumericUpDown";
             this.gsrNumericUpDown.ReadOnly = true;
             this.gsrNumericUpDown.Size = new System.Drawing.Size(49, 20);
-            this.gsrNumericUpDown.TabIndex = 34;
+            this.gsrNumericUpDown.TabIndex = 10;
             this.gsrNumericUpDown.ValueChanged += new System.EventHandler(this.gsrNumericUpDown_ValueChanged);
             // 
             // bvpNumericUpDown
             // 
             this.bvpNumericUpDown.InterceptArrowKeys = false;
             this.bvpNumericUpDown.Location = new System.Drawing.Point(378, 176);
+            this.bvpNumericUpDown.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
             this.bvpNumericUpDown.Name = "bvpNumericUpDown";
             this.bvpNumericUpDown.ReadOnly = true;
             this.bvpNumericUpDown.Size = new System.Drawing.Size(49, 20);
-            this.bvpNumericUpDown.TabIndex = 33;
+            this.bvpNumericUpDown.TabIndex = 8;
             this.bvpNumericUpDown.ValueChanged += new System.EventHandler(this.bvpNumericUpDown_ValueChanged);
             // 
             // tmpLabel
@@ -331,9 +360,9 @@
             this.tmpTrackBar.Minimum = 25;
             this.tmpTrackBar.Name = "tmpTrackBar";
             this.tmpTrackBar.Size = new System.Drawing.Size(246, 45);
-            this.tmpTrackBar.TabIndex = 4;
+            this.tmpTrackBar.TabIndex = 11;
             this.tmpTrackBar.TickFrequency = 5;
-            this.tmpTrackBar.Value = 25;
+            this.tmpTrackBar.Value = 36;
             this.tmpTrackBar.Scroll += new System.EventHandler(this.tmpTrackBar_Scroll);
             // 
             // hrLabel
@@ -361,8 +390,9 @@
             this.batTrackBar.Maximum = 100;
             this.batTrackBar.Name = "batTrackBar";
             this.batTrackBar.Size = new System.Drawing.Size(246, 45);
-            this.batTrackBar.TabIndex = 7;
+            this.batTrackBar.TabIndex = 15;
             this.batTrackBar.TickFrequency = 10;
+            this.batTrackBar.Value = 50;
             this.batTrackBar.Scroll += new System.EventHandler(this.batTrackBar_Scroll);
             // 
             // hrTrackBar
@@ -370,12 +400,11 @@
             this.hrTrackBar.LargeChange = 10;
             this.hrTrackBar.Location = new System.Drawing.Point(583, 119);
             this.hrTrackBar.Maximum = 220;
-            this.hrTrackBar.Minimum = 35;
             this.hrTrackBar.Name = "hrTrackBar";
             this.hrTrackBar.Size = new System.Drawing.Size(246, 45);
-            this.hrTrackBar.TabIndex = 6;
+            this.hrTrackBar.TabIndex = 13;
             this.hrTrackBar.TickFrequency = 10;
-            this.hrTrackBar.Value = 35;
+            this.hrTrackBar.Value = 70;
             this.hrTrackBar.Scroll += new System.EventHandler(this.hrTrackBar_Scroll);
             // 
             // bvpLabel
@@ -403,7 +432,7 @@
             this.gsrTrackBar.Maximum = 100;
             this.gsrTrackBar.Name = "gsrTrackBar";
             this.gsrTrackBar.Size = new System.Drawing.Size(246, 45);
-            this.gsrTrackBar.TabIndex = 3;
+            this.gsrTrackBar.TabIndex = 9;
             this.gsrTrackBar.TickFrequency = 10;
             this.gsrTrackBar.Scroll += new System.EventHandler(this.gsrTrackBar_Scroll);
             // 
@@ -412,9 +441,10 @@
             this.bvpTrackBar.LargeChange = 10;
             this.bvpTrackBar.Location = new System.Drawing.Point(124, 177);
             this.bvpTrackBar.Maximum = 100;
+            this.bvpTrackBar.Minimum = -100;
             this.bvpTrackBar.Name = "bvpTrackBar";
             this.bvpTrackBar.Size = new System.Drawing.Size(246, 45);
-            this.bvpTrackBar.TabIndex = 2;
+            this.bvpTrackBar.TabIndex = 7;
             this.bvpTrackBar.TickFrequency = 10;
             this.bvpTrackBar.Scroll += new System.EventHandler(this.bvpTrackBar_Scroll);
             // 
@@ -432,7 +462,7 @@
             this.closeButton.Location = new System.Drawing.Point(415, 14);
             this.closeButton.Name = "closeButton";
             this.closeButton.Size = new System.Drawing.Size(75, 23);
-            this.closeButton.TabIndex = 0;
+            this.closeButton.TabIndex = 18;
             this.closeButton.Text = "Close";
             this.closeButton.UseVisualStyleBackColor = true;
             this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
